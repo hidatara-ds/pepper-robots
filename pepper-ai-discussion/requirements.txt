@@ -1,0 +1,12 @@
+flask
+vertexai
+google-cloud-texttospeech
+google-cloud-aiplatform
+google-cloud-speech
+gTTS
+requests
+werkzeug
+gunicorn
+sounddevice
+numpy
+pydub
