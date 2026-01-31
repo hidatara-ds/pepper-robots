@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block title %} Pepper Jalan Jalan {% endblock title
+%} {% block content %} {{ super() }}
+
+<div>
+  <div id="state-null" style="display: none">
+    <div class="movement-header">
+      <a href="/movement-robot" class="back-button">
+        <img
+          src="{{ url_for('static', filename='images/back.png') }}"
+          alt="Back"
+        />
+        <div>Kembali</div>
+      </a>
+      <h1 class="movement-title">peper jalan jalan</h1>
+    </div>
+
+    <div class="movement-content">
+      <div class="wrapper-control">
+        <div class="card-dance">
+          <img
+            src="{{ url_for('static', filename='images/pepper-walk.png') }}"
+            alt="Pepper Dance"
+          />
+          <p>
+            Silahkan pilih terlebih dahulu rute yang <br />
+            ada pada aplikasi peper
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="state-filled" style="display: none">
+    <div class="movement-header">
+      <a href="/movement-robot" class="back-button">
+        <img
+          src="{{ url_for('static', filename='images/back.png') }}"
+          alt="Back"
+        />
+        <div>Kembali</div>
+      </a>
+      <h1 class="movement-title">Nama rute yang di pilih</h1>
+    </div>
+    <div class="movement-content">
+      <img
+        src="{{ url_for('static', filename='images/route.png') }}"
+        alt="route"
+        class="route-img"
+      />
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block script_general %} {{ super() }}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const state = null;
+
+    const stateNull = document.getElementById("state-null");
+    const stateFilled = document.getElementById("state-filled");
+
+    if (!state || state === "null" || state === "undefined") {
+      stateNull.style.display = "block";
+      stateFilled.style.display = "none";
+    } else {
+      stateNull.style.display = "none";
+      stateFilled.style.display = "block";
+    }
+  });
+</script>
+{% endblock script_general %}

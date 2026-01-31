@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block title %} Pepper Robot {% endblock title %} {%
+block content %} {{ super() }}
+<div class="container">
+  <div class="header">
+    <img
+      src="{{ url_for('static', filename='images/pepper_face_border.png') }}"
+      alt="Pepper"
+      data-toggle="dropdown"
+      
+    />
+    <h1 class="font-tsel">Halo! 👋 Saya Pepper.</h1>
+    <div class="font-poppins sub-title">
+      Senang bertemu dengan Anda! Saya siap membantu. Mari, kita mulai!
+    </div>
+  </div>
+
+  <div class="grid">
+    {% for card in cards %}
+    <a 
+      href="{{ card.url }}" 
+      class="card"
+      {% if card.url.startswith('http') %}target="_blank"{% else %}target="_self"{% endif %}
+    >
+      <img
+        src="{{ url_for('static', filename='images/' + card.image) }}"
+        alt="{{ card.title }}"
+      />
+      <span class="font-tsel card-title">{{ card.title }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

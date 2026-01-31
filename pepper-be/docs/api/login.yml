@@ -1,0 +1,64 @@
+tags:
+  - Authentication
+summary: Admin Login
+description: Authenticate admin user and get JWT access token
+parameters:
+  - name: credentials
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: admin@example.com
+          description: Admin email address
+        password:
+          type: string
+          format: password
+          example: newpassword456
+          description: Admin password
+responses:
+  200:
+    description: Login successful
+    schema:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: JWT access token (expires in 1 hour)
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        user:
+          type: string
+          description: Admin email
+          example: admin@example.com
+        login_at:
+          type: string
+          format: date-time
+          description: Login timestamp
+          example: "2025-06-26T03:17:47+07:00"
+  400:
+    description: Invalid credentials or missing data
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Wrong credentials
+  429:
+    description: Rate limit exceeded (5 attempts per minute)
+    schema:
+      type: string
+      example: "<!doctype html><title>429 Too Many Requests</title>"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Internal server error 

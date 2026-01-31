@@ -1,0 +1,57 @@
+tags:
+  - User Management
+summary: Get User Identities
+description: Get all active user identities
+security:
+  - Bearer: []
+responses:
+  200:
+    description: List of user identities retrieved successfully
+    schema:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        count:
+          type: integer
+          description: Number of identities returned
+          example: 2
+        identities:
+          type: array
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440001
+              name:
+                type: string
+                example: Alice Johnson
+              created_at:
+                type: string
+                format: date-time
+                example: "2025-06-26T02:45:15.123456"
+              is_active:
+                type: boolean
+                example: true
+  401:
+    description: Authentication required
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Token is missing
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 500
+        message:
+          type: string
+          example: Internal server error 

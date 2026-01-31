@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block title %} Face Recognition {% endblock title
+%} {% block content %} {{ super() }}
+<div>
+  <a href="/" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </a>
+  <div class="face-recognition-status">
+    {% if status == "failed" %}
+    <div class="wrapper-status-failed">
+      <div class="font-poppins status-face-recognition">
+        Maaf☹️, saya belum mengenali Anda. Tapi saya senang sekali bisa bertemu
+        hari ini!
+      </div>
+      <img
+        src="{{ url_for('static', filename='images/pepper-confuse2.png') }}"
+        alt="Pepper"
+        class="img-face-recognition"
+      />
+    </div>
+    {% elif status == 'timeout' %}
+    <div class="ai-content">
+      <img
+        src="{{ url_for('static', filename='images/disconnect.png') }}"
+        alt="Disconnected"
+        class="icon-disconnected"
+      />
+      <h2>Ups! Sedang ada gangguan pada server atau koneksi Anda</h2>
+      <p>
+        Sepertinya perangkat Anda sedang offline atau terjadi intermitten/tidak
+        stabil.<br />
+        Pastikan Anda terhubung ke jaringan, lalu coba lagi.
+      </p>
+      <button class="reload-btn" onclick="location.reload()">
+        <img
+          src="{{ url_for('static', filename='images/reload.png') }}"
+          alt="Reload"
+          class="icon-reload"
+        />
+        <span class="reload-text">Coba lagi</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="wrapper-status-success">
+      <div class="wrapper-status">
+        <div class="face-frame-wrapper">
+          <img
+            src="{{ url_for('static', filename='images/frame.png') }}"
+            alt="Frame"
+            class="face-frame-img"
+          />
+          <img id="faceImage" class="face-photo-img" alt="Foto Anda" />
+        </div>
+        <div class="font-poppins status-face-recognition">
+          Halo👋, {{status}}!<br />
+          Senang banget bisa <br />
+          ketemu lagi. Semoga <br />
+          harimu menyenangkan <br />
+          ya☺️
+        </div>
+      </div>
+
+      <img
+        src="{{ url_for('static', filename='images/pepper-status.png') }}"
+        alt="Pepper"
+        class="img-face-recognition"
+      />
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %} {% block script_datatables %} {{ super() }} {% endblock
+script_datatables %}

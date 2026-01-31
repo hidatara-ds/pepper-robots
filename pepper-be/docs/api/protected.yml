@@ -1,0 +1,53 @@
+tags:
+  - Authentication
+summary: Protected Route Example
+description: Example of a protected route that requires JWT authentication
+security:
+  - Bearer: []
+responses:
+  200:
+    description: Access granted
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: This is a protected route
+        user:
+          type: object
+          properties:
+            admin_id:
+              type: string
+              example: fad7f2e0-4cfe-4cf9-916e-3f129c29fa0a
+            email:
+              type: string
+              example: admin@example.com
+            iat:
+              type: integer
+              description: Token issued at (timestamp)
+              example: 1750882985
+            exp:
+              type: integer
+              description: Token expires at (timestamp)
+              example: 1750886585
+  401:
+    description: Authentication required or token invalid/expired
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          examples:
+            missing_token:
+              value: Token is missing
+            invalid_token:
+              value: Invalid token
+            expired_token:
+              value: Token has expired
+        error:
+          type: string
+          examples:
+            invalid_token:
+              value: invalid_token
+            expired_token:
+              value: token_expired 

@@ -1,0 +1,152 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Flask
+instance/
+.webassets-cache
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Face images (temporary files)
+app/static/face_images/originals/temp_*
+app/static/face_images/processed/temp_*
+
+# Testing files
+test_*.py
+*_test.py
+debug_*.py
+temp_*.py
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# GCP Service Account Key
+keycredentials.json
+
+# Server logs
+server.log
+*.log
+
+# Testing artifacts
+.pytest_cache/
+.test_*
+.temp_*
+
+# Coverage reports
+htmlcov/
+.coverage
+
+# Development files
+debug_*
+temp_*
+test_token*
+test_user_id*
+test_reset_token*
+
+# Database files (if you want to exclude the actual DB)
+# Uncomment next line if you don't want to commit the database:
+# pepper_robot.db
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+Pepper_Robot_Auth_Movement_API.postman_collection.json
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Postman collections (if you want to keep them local)
+# *.postman_collection.json
+# *.postman_environment.json

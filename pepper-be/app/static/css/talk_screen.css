@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+    --red-start: #ff4757;
+    /* A bright red */
+    --red-end: #e53935;
+    /* A slightly darker red */
+    --light-gray: rgba(255, 255, 255, 0.4);
+    /* For instruction text */
+    --white: #ffffff;
+    --circle-bg: rgba(255, 255, 255, 0.2);
+    /* Transparent white for button */
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    background: url('../images/background.webp') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Subtle background pattern (optional, based on image hints) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/background.webp') no-repeat center center;
+    opacity: 0.3;
+}
+
+
+.container {
+  /* width: 90%; */
+  /* margin: 0 auto; */
+  width: calc(100% - 32px);
+  margin: 16px;
+  max-width: 1100px;
+  text-align: center;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 24px 0;
+    position: absolute;
+    top: 0;
+    left: 24px;
+    /* padding-left: 50px; */
+    /* Adjust as needed */
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+    background-color: #D14545;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+}
+
+.back-button:hover {
+    opacity: 0.8;
+}
+
+.back-button i {
+    margin-right: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center vertically in remaining space */
+    align-items: center;
+    flex-grow: 1;
+    /* Take up available space */
+}
+
+.instruction-text {
+    color: var(--white);
+    font-size: 28px;
+    margin-bottom: 50px;
+    /* Space between text and button */
+    text-align: center;
+}
+
+.microphone-button-wrapper {
+    position: relative;
+    width: 250px;
+    /* Size of the outer circle */
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.microphone-button {
+    width: 200px;
+    /* Size of the inner microphone circle */
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--circle-bg);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    outline: none;
+    position: relative;
+    /* For z-index over waves */
+    z-index: 2;
+}
+
+.microphone-button i {
+    font-size: 80px;
+    /* Size of the microphone icon */
+    color: var(--white);
+}
+
+.microphone-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.animated-wave {
+    position: absolute;
+    /* Adjust width/height based on your GIF's dimensions,
+       or make it fill the wrapper and use object-fit if your GIFs are larger */
+    width: 100px; /* Example size for your GIF */
+    height: 100px; /* Example size for your GIF */
+    object-fit: contain; /* Ensures GIF fits without cropping */
+    z-index: 1; /* Positioned below the button */
+    /* display: none; is set by JS initially */
+}
+
+.animated-wave.left-wave-img {
+    left: -100px; /* Adjust position based on your GIF size */
+    top: 50%;
+    margin-top: -50px; /* Center based on GIF height */
+}
+
+.animated-wave.right-wave-img {
+    right: -100px; /* Adjust position based on your GIF size */
+    top: 50%;
+    margin-top: -50px; /* Center based on GIF height */
+}
+
+/* Media queries would also need adjustment for GIF sizes */
+
+
+@keyframes wavePulse {
+    0% {
+        transform: translateY(-50%) scale(0.5);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(-50%) scale(1.2);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(-50%) scale(0.5);
+        opacity: 0.8;
+    }
+}
+
+
+/* Responsive adjustments for smaller screens (if needed)
+@media (max-width: 768px) {
+    .instruction-text {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .microphone-button-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .microphone-button {
+        width: 160px;
+        height: 160px;
+    }
+
+    .microphone-button i {
+        font-size: 60px;
+    }
+
+    .back-button {
+        font-size: 18px;
+    }
+
+    .back-button i {
+        font-size: 20px;
+    }
+
+    .header {
+        padding-left: 30px;
+    }
+
+    .sound-wave.left-wave {
+        left: -60px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .sound-wave.right-wave {
+        right: -60px;
+        width: 50px;
+        height: 50px;
+    }
+} */

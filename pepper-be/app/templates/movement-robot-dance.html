@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %} Pepper Dance {% endblock title %} {%
+block content %} {{ super() }}
+
+<div>
+  <a href="/movement-robot" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </a>
+  <div class="movement-content">
+    <h1>Control Pepper</h1>
+    <div class="wrapper-control">
+      <button class="card-dance">
+        <img
+          src="{{ url_for('static', filename='images/pepper-dance2.png') }}"
+          alt="Pepper Dance"
+        />
+        <p>Pepper Dance</p>
+      </button>
+      <button class="card-dance">
+        <img
+          src="{{ url_for('static', filename='images/pepper-dance3.png') }}"
+          alt="Pepper Walk"
+        />
+        <p>Pepper Jalan Jalan</p>
+      </button>
+      <button class="card-dance">
+        <img
+          src="{{ url_for('static', filename='images/pepper-dance4.png') }}"
+          alt="Pepper Walk"
+        />
+        <p>Pepper Jalan Jalan</p>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block script_general %} {{ super() }}
+<script></script>
+{% endblock script_general %}

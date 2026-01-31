@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Interaction UI</title>
+    <link rel="stylesheet" href="../css/talk_screen.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>Kembali</span>
+            </a>
+        </div>
+
+        <div class="content">
+            <p class="instruction-text">Klik mikrofon untuk berbicara</p>
+            <div class="microphone-button-wrapper">
+                <img src="" alt="Left Sound Wave" class="animated-wave left-wave-img"
+                    id="leftWave">
+                <img src="" alt="Right Sound Wave" class="animated-wave right-wave-img"
+                    id="rightWave">
+
+                <button class="microphone-button" id="microphoneButton">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const microphoneButton = document.getElementById('microphoneButton');
+        const leftWaveImg = document.getElementById('leftWave');
+        const rightWaveImg = document.getElementById('rightWave');
+        const parentWaveImg = leftWaveImg.parentNode;
+
+        leftWaveImg.src = "../images/sound_wave.gif";
+        rightWaveImg.src = "../images/sound_wave.gif";
+
+        bool = true;
+
+        leftWaveImg.remove();
+        rightWaveImg.remove();
+
+        microphoneButton.addEventListener('click', () => {
+            if (bool) {
+                parentWaveImg.appendChild(leftWaveImg);
+                parentWaveImg.appendChild(rightWaveImg);
+                bool = false;
+            } else {
+                leftWaveImg.remove();
+                rightWaveImg.remove();
+                bool = true;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

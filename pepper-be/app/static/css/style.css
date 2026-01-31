@@ -1,0 +1,565 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Telkomsel Batik Sans";
+  src: url("../fonts/telkomsel-batik-sans-bold.otf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: url("../images/background.webp") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: calc(100% - 32px);
+  margin: 16px;
+  /* max-width: 1100px; */
+  text-align: center;
+}
+
+.header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  font-size: 35px;
+}
+
+.header p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0 8px;
+}
+
+.card {
+  margin: 12px;
+  /* Half of your desired gap (24px total gap) */
+  flex: 1 1 calc(50% - 24px);
+  /* Adjust flex-basis to account for margins */
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff40;
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card img {
+  width: auto;
+  height: 58px;
+}
+
+.card-title {
+  font-weight: bold;
+  color: white;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 43px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background-color: #a40000;
+  /* darker red */
+  border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto 10px auto;
+}
+
+.avatar img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.iconButton img {
+  width: 120px;
+  height: 80px;
+}
+
+.camera-feed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  background-color: black;
+}
+
+.font-tsel {
+  font-family: "Telkomsel Batik Sans", sans-serif;
+}
+
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.sub-title {
+  margin: 18px 0 18px 0;
+  font-size: 18px;
+}
+
+.back-button {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  font-weight: 500;
+
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 12px 20px;
+}
+
+.back-button:hover {
+  opacity: 0.8;
+}
+
+.status-face-recognition {
+  text-align: start;
+  font-size: 40px;
+}
+
+.img-face-recognition {
+  bottom: 0;
+  width: 330px;
+  height: auto;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-face-timeout {
+  text-align: center;
+  font-size: 24px;
+
+  width: 55%;
+}
+
+.status-face-timeout-bold {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+
+  width: 50%;
+  margin: 28px 0;
+}
+
+.img-face-timeout {
+  width: 100px;
+  height: 100px;
+}
+
+.microphone-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+  box-shadow: none;
+  margin-top: 60px;
+}
+
+.microphone-btn img {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  display: block;
+}
+
+.icon-disconnected {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+}
+
+.stop-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+  box-shadow: none;
+  margin-top: 60px;
+}
+
+.stop-btn img {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  display: block;
+}
+
+.ai-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.ai-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-content p {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.ai-content h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 60px;
+}
+
+.ai-content h1 {
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.recording-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+
+.wave-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.timer {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-top: 18px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.reload-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #fff;
+  color: #c00;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 16px;
+  margin-top: 60px;
+}
+
+.reload-btn:hover {
+  background: #f8dcdc;
+  color: #b00;
+}
+
+.icon-reload {
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+}
+
+.audio-player {
+  margin: 32px auto;
+  padding: 24px 36px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #c90018 70%, #f06a19 100%);
+  box-shadow: 0 2px 16px 0 rgb(0 0 0 / 10%);
+  border: 4px solid #fff;
+  max-width: 900px;
+  position: relative;
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+  margin-top: 40px;
+  margin-bottom: 32px;
+}
+
+.avatar-pepper {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #b00019;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-pepper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.waveform-box {
+  border: 1px solid #fff;
+  border-radius: 100px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+}
+
+.waveform-box img {
+  height: 100px;
+  width: auto;
+  display: block;
+}
+
+.audio-btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.15s;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  cursor: pointer;
+}
+
+.audio-btn img {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+
+.wrapper-status-success {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  gap: 16px;
+  padding-left: 40px;
+}
+
+.face-frame-wrapper {
+  position: relative;
+  width: 391px;
+  height: 521px;
+}
+
+.face-frame-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.face-photo-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.wrapper-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.face-recognition-status {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.wrapper-status-failed {
+  display: flex;
+  align-items: center;
+  padding: 80px;
+}
+
+.wrapper-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.wrapper-control img {
+  height: 232px;
+  width: 232px;
+}
+
+.card-control {
+  background-color: white;
+  border-radius: 14px;
+  width: 353px;
+  height: 353px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: none;
+}
+
+.card-control p {
+  color: black;
+  font-size: 32px;
+  font-weight: 400px;
+}
+
+.movement-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 57px;
+}
+
+.movement-content h1 {
+  font-size: 30px;
+}
+
+.card-dance {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 16px;
+}
+
+.card-dance p {
+  font-size: 24px;
+  text-align: center;
+}
+
+.movement-header {
+  position: relative;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movement-title {
+  font-size: 24px;
+  font-weight: normal;
+  color: white;
+  position: fixed;
+  top: 24px;
+  left: 45%;
+  z-index: 1000;
+}
+
+.route-img {
+  width: auto;
+  height: 400px;
+  object-fit: contain;
+}

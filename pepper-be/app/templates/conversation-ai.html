@@ -1,0 +1,269 @@
+{% extends "base.html" %} {% block title %} Diskusi AI {% endblock title %} {%
+block content %}
+<div id="diskusi-ai-1" class="ai-card">
+  <button type="button" class="back-button back-button-reset">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </button>
+  <div class="ai-content">
+    <h1>Klik mikrofon untuk berbicara</h1>
+    <button class="microphone-btn" onclick="showState('diskusi-ai-2')">
+      <img src="{{ url_for('static', filename='images/mic.png') }}" alt="Mic" />
+    </button>
+  </div>
+</div>
+
+<div id="diskusi-ai-2" class="ai-card" style="display: none">
+  <a href="/" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </a>
+  <div class="ai-content">
+    <h2>Silakan berbicara</h2>
+    <div class="recording-row">
+      <img
+        src="{{ url_for('static', filename='images/sound_wave.gif') }}"
+        alt="Wave Left"
+        class="wave-icon left"
+      />
+      <button class="stop-btn" onclick="showState('loading')">
+        <img
+          src="{{ url_for('static', filename='images/stop.png') }}"
+          alt="Stop"
+        />
+      </button>
+      <img
+        src="{{ url_for('static', filename='images/sound_wave.gif') }}"
+        alt="Wave Right"
+        class="wave-icon right"
+      />
+    </div>
+    <div class="timer" id="timer">00:30</div>
+  </div>
+</div>
+
+<div id="loading" class="ai-card" style="display: none">
+  <a href="/" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </a>
+  <div class="ai-content">
+    <h2>Sedang memproses...</h2>
+    <div class="spinner">
+      <img
+        src="{{ url_for('static', filename='images/loading4.gif') }}"
+        alt="Back"
+      />
+    </div>
+  </div>
+</div>
+
+<div id="koneksi-terputus" class="ai-card" style="display: none">
+  <a href="/" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </a>
+  <div class="ai-content">
+    <img
+      src="{{ url_for('static', filename='images/disconnect.png') }}"
+      alt="Disconnected"
+      class="icon-disconnected"
+    />
+    <h2>Ups! Sedang ada gangguan pada server atau koneksi Anda</h2>
+    <p>
+      Sepertinya perangkat Anda sedang offline atau terjadi intermitten/tidak
+      stabil.<br />
+      Pastikan Anda terhubung ke jaringan, lalu coba lagi.
+    </p>
+    <button class="reload-btn" onclick="location.reload()">
+      <img
+        src="{{ url_for('static', filename='images/reload.png') }}"
+        alt="Reload"
+        class="icon-reload"
+      />
+      <span class="reload-text">Coba lagi</span>
+    </button>
+  </div>
+</div>
+
+<div id="result" class="result" style="display: none">
+  <a href="/diskusi-ai" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </a>
+  <div class="audio-row">
+    <div class="avatar-pepper">
+      <img
+        src="{{ url_for('static', filename='images/pepper_face_border.png') }}"
+        alt="Pepper"
+      />
+    </div>
+    <div class="waveform-box">
+      <img
+        src="{{ url_for('static', filename='images/sound_wave.gif') }}"
+        alt="Waveform"
+      />
+      <img
+        src="{{ url_for('static', filename='images/sound_wave.gif') }}"
+        alt="Waveform"
+      />
+      <img
+        src="{{ url_for('static', filename='images/sound_wave.gif') }}"
+        alt="Waveform"
+      />
+      <img
+        src="{{ url_for('static', filename='images/sound_wave.gif') }}"
+        alt="Waveform"
+      />
+    </div>
+    <button class="audio-btn play">
+      <img
+        src="{{ url_for('static', filename='images/play.png') }}"
+        alt="Play"
+      />
+    </button>
+    <button class="audio-btn stop">
+      <img
+        src="{{ url_for('static', filename='images/stop2.png') }}"
+        alt="Stop"
+      />
+    </button>
+  </div>
+</div>
+
+{% endblock content %} {% block script_general %}
+<script>
+  function showState(stateId) {
+    document.getElementById("diskusi-ai-1").style.display = "none";
+    document.getElementById("diskusi-ai-2").style.display = "none";
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("koneksi-terputus").style.display = "none";
+    document.getElementById("result").style.display = "none";
+    document.getElementById(stateId).style.display = "block";
+
+    if (stateId === "diskusi-ai-2") {
+      startTimer();
+      startAIRecording();
+    }
+  }
+
+  let timerInterval;
+  function startTimer() {
+    let seconds = 30;
+    document.getElementById("timer").innerText = "00:30";
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      seconds--;
+      document.getElementById("timer").innerText =
+        "00:" + (seconds < 10 ? "0" : "") + seconds;
+      if (seconds <= 0) {
+        clearInterval(timerInterval);
+        stopAIRecording();
+      }
+    }, 1000);
+  }
+
+  function startAIRecording() {
+    fetch("/ai_conversation/record", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    }).catch((err) => {
+      showState("koneksi-terputus");
+    });
+  }
+
+  function stopAIRecording() {
+    showState("loading");
+
+    fetch("/ai_conversation/stop-record", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((res) => {
+        if (res.ok) {
+          showState("result");
+          return playAIConversationAudio();
+        } else {
+          showState("koneksi-terputus");
+        }
+      })
+      .catch((err) => {
+        console.error("❌ Error:", err);
+        showState("koneksi-terputus");
+      });
+  }
+
+  function playAIConversationAudio() {
+    return fetch("/ai_conversation/play-audio-conversation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+  }
+
+  function stopAudioConversation() {
+    return fetch("/ai_conversation/stop-audio-conversation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+  }
+
+  function resetConversation() {
+    return fetch("/ai_conversation/reset", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const stopBtn = document.querySelector(".stop-btn");
+    if (stopBtn) {
+      stopBtn.addEventListener("click", function () {
+        clearInterval(timerInterval);
+        stopAIRecording();
+      });
+    }
+
+    const playBtn = document.querySelector(".audio-btn.play");
+    if (playBtn) {
+      playBtn.addEventListener("click", function () {
+        playAIConversationAudio();
+      });
+    }
+
+    const stopAudioBtn = document.querySelector(".audio-btn.stop");
+    if (stopAudioBtn) {
+      stopAudioBtn.addEventListener("click", function () {
+        stopAudioConversation();
+      });
+    }
+
+    const resetConversationBtn = document.querySelector(".back-button-reset");
+    if (resetConversationBtn) {
+      resetConversationBtn.addEventListener("click", function () {
+        resetConversation()
+          .then(() => {
+            window.location.href = "/";
+          })
+          .catch(() => {
+            window.location.href = "/";
+          });
+      });
+    }
+  });
+</script>
+{% endblock script_general %}

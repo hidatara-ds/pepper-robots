@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block title %} Face Recognition {% endblock title
+%} {% block content %} {{ super() }}
+
+<div>
+  <a href="/" class="back-button">
+    <img src="{{ url_for('static', filename='images/back.png') }}" alt="Back" />
+    <div>Kembali</div>
+  </a>
+  <div class="ai-content">
+    <h1>
+      Hai, mohon ditunggu sebentar ya. <br />
+      Robot sedang mengenali wajah Anda.
+    </h1>
+    <div class="spinner">
+      <img
+        src="{{ url_for('static', filename='images/loading4.gif') }}"
+        alt="Back"
+      />
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block script_general %} {{ super() }}
+<script>
+  function init() {
+    fetch("{{ url_for('capture_face_recognize') }}", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("📸 Face Recognition Data:", data);
+        if (data?.status_code === 200 && data?.name) {
+          if (data.face_image_base64) {
+            localStorage.setItem("face_image_base64", data.face_image_base64);
+          }
+
+          window.location.href =
+            "{{ url_for('face_recognition_status', status='__USER__') }}".replace(
+              "__USER__",
+              encodeURIComponent(data.name)
+            );
+        } else if (data?.status_code === 400) {
+          window.location.href =
+            "{{ url_for('face_recognition_status', status='failed') }}";
+        } else {
+          window.location.href =
+            "{{ url_for('face_recognition_status', status='timeout') }}";
+        }
+      })
+      .catch((error) => {
+        window.location.href =
+          "{{ url_for('face_recognition_status', status='timeout') }}";
+        console.error("🚫 Error:", error);
+      });
+  }
+  window.addEventListener("DOMContentLoaded", init);
+</script>
+{% endblock script_general %}
