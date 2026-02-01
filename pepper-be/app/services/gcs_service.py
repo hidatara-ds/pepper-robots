@@ -1,4 +1,5 @@
 import os
+import re
 import logging
 from datetime import datetime
 from dotenv import load_dotenv
@@ -44,12 +45,38 @@ class GCSService:
             }
 
     def _upload_to_gcs(self, file, user_id, filename):
-        """Upload to Google Cloud Storage"""
+        """
+        Upload file to Google Cloud Storage
+        
+        Args:
+            file: File object to upload
+            user_id: User ID to get user name
+            filename: Generated filename for the uploaded file
+            
+        Returns:
+            Dict with upload result (success, public_url, blob_name) or error info
+        """
         try:
-            user_name = User.get_user_by_name(user_id)
-            # Replace spaces with underscores for folder naming
-            # TODO: TOLONG BENERIN INI NANTI
-            user_name = user_name.replace(' ', '_') if user_name else 'unknown_user'
+            # Get user information from database
+            user_data = User.get_user_by_id(user_id)
+            
+            if user_data and user_data.get('name'):
+                # Sanitize user name for folder naming: replace spaces and special chars with underscores
+                # This ensures valid GCS blob paths and prevents path traversal issues
+                user_name = user_data['name'].strip()
+                # Replace spaces and invalid characters with underscores
+                user_name = re.sub(r'[^\w\-]', '_', user_name)
+                # Remove multiple consecutive underscores
+                user_name = re.sub(r'_+', '_', user_name)
+                # Remove leading/trailing underscores
+                user_name = user_name.strip('_')
+                # Fallback if name becomes empty after sanitization
+                if not user_name:
+                    user_name = 'unknown_user'
+            else:
+                user_name = 'unknown_user'
+                logging.warning(f"User not found for user_id: {user_id}, using default folder name")
+            
             blob_name = f"faces/{user_name}/{filename}"
             blob = self.bucket.blob(blob_name)
 

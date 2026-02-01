@@ -1,9 +1,32 @@
+"""
+Pepper Robot Management Backend Application
+Main Flask application initialization with rate limiting and API documentation
+"""
+
+import os
+import logging
 from flask import Flask
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flasgger import Swagger
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+
+# Load Flask configuration from environment
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
+app.config['FLASK_ENV'] = os.getenv('FLASK_ENV', 'development')
 
 # Initialize rate limiter
 limiter = Limiter(
@@ -55,4 +78,7 @@ swagger_template = {
 
 swagger = Swagger(app, config=swagger_config, template=swagger_template)
 
+# Import routes after app initialization to avoid circular imports
 from app import routes
+
+logger.info("Pepper Robot Management API initialized successfully")
