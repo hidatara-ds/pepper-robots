@@ -1,7 +1,5 @@
 # 🤖 Pepper Robot Management System
 
-**Project Portfolio for Apple Institution Submission**
-
 ---
 
 ## 📋 Project Overview
