@@ -1,87 +1,89 @@
-# Aplikasi API Pengenalan Wajah dengan Flask dan Google Cloud Storage
+# Face Recognition API with Flask and Google Cloud Storage
 
-Aplikasi ini adalah API berbasis Flask untuk mengenali dan mendaftarkan wajah, menggunakan DeepFace dan Google Cloud Storage (GCS) sebagai database gambar wajah.
+A Flask-based REST API for face recognition and registration, utilizing DeepFace and Google Cloud Storage (GCS) as the face image database.
 
-## Fitur
-- Sinkronisasi otomatis database wajah dari GCS
-- Endpoint `/recognize` untuk mengenali wajah
-- Endpoint `//validate_face_image` untuk mendeteksi dari gambar apakah ada wajah yang dapat dideteksi
-- Endpoint `/register` untuk mendaftarkan wajah baru
-- Dukungan client Python (bisa diintegrasikan ke robot Pepper)
+> **Note**: This project was originally developed as part of an Apple Developer Academy application portfolio and represents significant personal effort. While it's open source under MIT License, please provide proper attribution when using this code.
+
+## Features
+- Automatic face database synchronization from GCS
+- `/recognize` endpoint for face recognition
+- `/validate_face_image` endpoint to detect if a face is present in an image
+- `/register` endpoint for registering new faces
+- Python client support (can be integrated with Pepper robot)
 
 ---
 
-## Prasyarat
+## Prerequisites
 - **Python 3.10**
-- **Google Cloud Service Account** dan file credential (lihat di bawah)
-- **Bucket GCS** untuk database gambar wajah
+- **Google Cloud Service Account** and credential file (see below)
+- **GCS Bucket** for face image database
 
 ---
 
-## Setup Aman untuk Public Repo
+## Secure Setup for Public Repository
 
-### 1. **JANGAN upload file `key.json` ke repo!**
-- File `key.json` sudah ada di `.gitignore`.
-- Hanya upload `key.json.example` (isi dummy, bukan credential asli).
+### 1. **DO NOT upload `key.json` file to the repository!**
+- The `key.json` file is already in `.gitignore`.
+- Only upload `key.json.example` (with dummy content, not real credentials).
 
-### 2. **Semua variabel sensitif diatur lewat environment variable**
-- Nama bucket, path credential, dan BASE_URL **tidak di-hardcode** di kode.
-- Semua script Python mengambil variabel berikut dari environment:
-  - `GCS_BUCKET_NAME` (nama bucket GCS)
-  - `GOOGLE_APPLICATION_CREDENTIALS` (path ke file credential, default: `key.json`)
-  - `BASE_URL` (alamat server API, default: `http://localhost:8000`)
+### 2. **All sensitive variables are configured via environment variables**
+- Bucket name, credential path, and BASE_URL are **not hardcoded** in the code.
+- All Python scripts retrieve the following variables from environment:
+  - `GCS_BUCKET_NAME` (GCS bucket name)
+  - `GOOGLE_APPLICATION_CREDENTIALS` (path to credential file, default: `key.json`)
+  - `BASE_URL` (API server address, default: `http://localhost:8000`)
 
-### 3. **Contoh file credential**
-- File `key.json.example` sudah tersedia. Copy ke `key.json` dan isi dengan credential asli milikmu.
+### 3. **Example credential file**
+- File `key.json.example` is provided. Copy it to `key.json` and fill with your actual credentials.
 
 ---
 
-## Cara Setup (Local Development)
+## Local Development Setup
 
-1. **Clone repo dan masuk ke folder project**
-2. **Copy file credential**
+1. **Clone repository and navigate to project folder**
+2. **Copy credential file**
    ```sh
    cp key.json.example key.json
-   # Lalu edit dan isi dengan credential asli
+   # Then edit and fill with actual credentials
    ```
-3. **Set environment variable** (Linux/macOS)
+3. **Set environment variables** (Linux/macOS)
    ```sh
    export GCS_BUCKET_NAME=your-bucket-name
    export GOOGLE_APPLICATION_CREDENTIALS=key.json
    export BASE_URL=http://localhost:8000
    ```
-   (Windows: gunakan `set` atau `.env` sesuai shell yang dipakai)
-4. **Buat dan aktifkan virtual environment**
+   (Windows: use `set` or `.env` depending on your shell)
+4. **Create and activate virtual environment**
    ```sh
    python3.10 -m venv venv
    source venv/bin/activate
    pip install --upgrade pip
    pip install -r requirements.txt
    ```
-5. **Jalankan server**
+5. **Run server**
    ```sh
    python app.py
-   # atau untuk production:
+   # or for production:
    gunicorn --bind 127.0.0.1:8000 app:app
    ```
-6. **Jalankan client/test**
-   - Edit `BASE_URL` di environment variable jika perlu.
-   - Jalankan `test_client.py` atau integrasikan ke robot Pepper dengan `pepper_client.py`.
+6. **Run client/test**
+   - Edit `BASE_URL` in environment variable if needed.
+   - Run `test_client.py` or integrate with Pepper robot using `pepper_client.py`.
 
 ---
 
-## Cara Deploy ke Compute Engine (Cloud)
+## Deploy to Compute Engine (Cloud)
 
-1. **Copy project ke VM** (pakai git, scp, atau upload manual)
-2. **Install Python, pip, venv di VM**
-3. **Copy file credential ke VM** (jangan upload ke repo!)
-4. **Set environment variable di shell VM**
+1. **Copy project to VM** (using git, scp, or manual upload)
+2. **Install Python, pip, venv on VM**
+3. **Copy credential file to VM** (don't upload to repository!)
+4. **Set environment variables in VM shell**
    ```sh
    export GCS_BUCKET_NAME=your-bucket-name
    export GOOGLE_APPLICATION_CREDENTIALS=key.json
-   export BASE_URL=http://<IP_VM>:8000
+   export BASE_URL=http://<VM_IP>:8000
    ```
-5. **Install requirements dan jalankan Gunicorn**
+5. **Install requirements and run Gunicorn**
    ```sh
    python3.10 -m venv venv
    source venv/bin/activate
@@ -89,42 +91,40 @@ Aplikasi ini adalah API berbasis Flask untuk mengenali dan mendaftarkan wajah, m
    pip install -r requirements.txt
    gunicorn --bind 127.0.0.1:8000 app:app
    ```
-6. **Setup Nginx sebagai reverse proxy ke 127.0.0.1:8000**
-7. **Akses API dari luar via Nginx (port 80)**
+6. **Setup Nginx as reverse proxy to 127.0.0.1:8000**
+7. **Access API from outside via Nginx (port 80)**
 
 ---
 
-## Struktur File Penting
-- `app.py` : Server Flask utama
-- `gcs_handler.py` : Sinkronisasi dan upload ke GCS
-- `test_client.py` : Client Python untuk testing
-- `pepper_client.py` : Client untuk integrasi dengan robot Pepper
-- `requirements.txt` : Daftar dependencies
-- `key.json.example` : Contoh credential (isi dummy)
-- `.gitignore` : Sudah mengabaikan file rahasia
+## Important File Structure
+- `app.py` : Main Flask server
+- `gcs_handler.py` : GCS synchronization and upload
+- `test_client.py` : Python client for testing
+- `pepper_client.py` : Client for Pepper robot integration
+- `requirements.txt` : Dependencies list
+- `key.json.example` : Credential example (dummy content)
+- `.gitignore` : Already ignoring sensitive files
 
 ---
 
-## Catatan Keamanan
-- **JANGAN pernah upload file credential asli ke repo public!**
-- **Selalu gunakan environment variable untuk data sensitif.**
-- **Update README jika ada variabel baru atau perubahan setup.**
+## Security Notes
+- **NEVER upload actual credential files to public repository!**
+- **Always use environment variables for sensitive data.**
+- **Update README if there are new variables or setup changes.**
 
 ---
 
-Untuk pertanyaan lebih lanjut, silakan buka issue di repo ini atau hubungi maintainer. 
+# Running Project on Local Computer (Windows)
 
-# Cara run Project Di Local Computer (Windows)
-
-## 🧩 Prasyarat
+## 🧩 Prerequisites
 
 ### ✅ Install Python 3.10 (Windows)
 
-1. Unduh dari [https://www.python.org/downloads/release/python-3100/](https://www.python.org/downloads/release/python-3100/)
-2. Saat instalasi, **centang opsi "Add Python to PATH"**
-3. Pilih “Customize installation”, lalu lanjutkan sampai selesai
+1. Download from [https://www.python.org/downloads/release/python-3100/](https://www.python.org/downloads/release/python-3100/)
+2. During installation, **check the "Add Python to PATH" option**
+3. Select "Customize installation", then continue until complete
 
-Cek versi Python:
+Check Python version:
 
 ```powershell
 py -3.10 --version
@@ -132,28 +132,28 @@ py -3.10 --version
 
 ---
 
-## 🚀 Cara Menjalankan Aplikasi (Lokal)
+## 🚀 Running the Application (Local)
 
-### 1. **Masuk ke folder aplikasi**
+### 1. **Navigate to application folder**
 
 ```powershell
 cd "final test face reco app"
 ```
 
-### 2. **Buat dan aktifkan virtual environment**
+### 2. **Create and activate virtual environment**
 
 ```powershell
 py -3.10 -m venv env310
 .\env310\Scripts\Activate.ps1
 ```
 
-❗ Jika muncul error seperti:
+❗ If you encounter an error like:
 
 ```
 cannot be loaded because running scripts is disabled...
 ```
 
-Jalankan PowerShell sebagai administrator dan ketik:
+Run PowerShell as administrator and type:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -165,38 +165,59 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 pip install -r requirements.txt
 ```
 
-### 4. **Jalankan server**
+### 4. **Run server**
 
 ```powershell
 python app.py
 ```
 
-Jika berhasil, server akan tersedia di:
+If successful, the server will be available at:
 
 * [http://127.0.0.1:8000](http://127.0.0.1:8000)
-* atau IP lokal seperti [http://192.168.x.x:8000](http://192.168.x.x:8000)
+* or local IP like [http://192.168.x.x:8000](http://192.168.x.x:8000)
 
 ---
 
-## ⚙️ Penyesuaian Path Database Wajah (`LOCAL_DB_PATH`)
+## ⚙️ Adjusting Face Database Path (`LOCAL_DB_PATH`)
 
-Secara default, lokasi penyimpanan database wajah diatur langsung di file `app.py` melalui variabel `LOCAL_DB_PATH`. Contoh:
+By default, the face database storage location is set directly in the `app.py` file via the `LOCAL_DB_PATH` variable. Example:
 
 ```python
 LOCAL_DB_PATH = r"C:\Users\GYAN\Documents\Magang\Sinergi Merah Putih\Robo Pepper\Face_Database"
 ```
 
-Jika kamu menjalankan aplikasi di komputer lain, pastikan:
+If you're running the application on another computer, make sure:
 
-* **Folder path tersebut ada dan bisa ditulisi**
-* Jika menggunakan folder lain, ubah nilai `LOCAL_DB_PATH` di `app.py` sesuai dengan lokasi folder wajah di komputermu
+* **The folder path exists and is writable**
+* If using a different folder, change the `LOCAL_DB_PATH` value in `app.py` according to your face folder location
 
-Contoh penggantian:
+Example replacement:
 
 ```python
-# Ganti dengan folder yang sesuai di sistemmu
-LOCAL_DB_PATH = r"C:\Users\<NAMAMU>\Documents\Face_Database"
+# Replace with the appropriate folder on your system
+LOCAL_DB_PATH = r"C:\Users\<YOUR_NAME>\Documents\Face_Database"
 ```
 
+---
 
+## 📄 License
 
+MIT License
+
+Copyright (c) 2025
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+## 🙏 Attribution
+
+If you use this code in your project, please provide attribution by mentioning the original author and linking back to this repository. This project represents significant personal effort and was developed as part of an Apple Developer Academy application portfolio.
+
+---
+
+For further questions, please open an issue in this repository or contact the maintainer.

@@ -1,10 +1,12 @@
 # 🤖 Pepper Robot Management System
 
+> **Note**: This project was originally developed as part of an Apple Developer Academy application portfolio and represents significant personal effort. While it's open source under MIT License, please provide proper attribution when using this code.
+
 ---
 
 ## 📋 Project Overview
 
-This project demonstrates a comprehensive, production-ready management system for Pepper humanoid robots, showcasing advanced capabilities in AI integration, face recognition, natural language processing, and robotic control. The system was specifically designed and developed as a portfolio project for submission to Apple Institution, highlighting expertise in full-stack development, cloud services integration, and intelligent automation.
+This project demonstrates a comprehensive, production-ready management system for Pepper humanoid robots, showcasing advanced capabilities in AI integration, face recognition, natural language processing, and robotic control.
 
 ---
 
@@ -237,7 +239,7 @@ This project showcases proficiency in:
 
 ## 📝 Notes for Reviewers
 
-This project was specifically designed and developed as a comprehensive portfolio piece for Apple Institution submission. All code, documentation, and architecture decisions were made with the intention of demonstrating:
+This project was specifically designed and developed as a comprehensive portfolio piece for Apple Developer Academy submission. All code, documentation, and architecture decisions were made with the intention of demonstrating:
 
 - **Technical Competency**: Advanced programming and system design skills
 - **Best Practices**: Industry-standard development methodologies
@@ -250,13 +252,29 @@ The codebase is production-ready and demonstrates real-world application develop
 
 ## 📄 License
 
-This project is part of a portfolio submission and is intended for educational and demonstration purposes.
+MIT License
+
+Copyright (c) 2025
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+## 🙏 Attribution
+
+If you use this code in your project, please provide attribution by mentioning the original author and linking back to this repository. This project represents significant personal effort and was developed as part of an Apple Developer Academy application portfolio.
+
+While this code is open source and free to use, proper attribution is requested to acknowledge the work and effort invested in creating this comprehensive system.
 
 ---
 
 ## 👤 Author
 
-Developed as a portfolio project for Apple Institution submission, showcasing comprehensive software development capabilities in robotics, AI, and cloud computing.
+Developed as a portfolio project for Apple Developer Academy submission, showcasing comprehensive software development capabilities in robotics, AI, and cloud computing.
 
 ---
 
@@ -264,4 +282,4 @@ Developed as a portfolio project for Apple Institution submission, showcasing co
 
 **Submission Date**: 2025
 
-**Institution**: Apple Institution
+**Institution**: Apple Developer Academy
