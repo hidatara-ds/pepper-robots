@@ -1,9 +1,5 @@
 # 🤖 Pepper Robot Management System
 
-> **Note**: This project was originally developed as part of an Apple Developer Academy application portfolio and represents significant personal effort. While it's open source under MIT License, please provide proper attribution when using this code.
-
----
-
 ## 📋 Project Overview
 
 This project demonstrates a comprehensive, production-ready management system for Pepper humanoid robots, showcasing advanced capabilities in AI integration, face recognition, natural language processing, and robotic control.
