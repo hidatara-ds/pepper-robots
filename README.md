@@ -267,15 +267,3 @@ If you use this code in your project, please provide attribution by mentioning t
 While this code is open source and free to use, proper attribution is requested to acknowledge the work and effort invested in creating this comprehensive system.
 
 ---
-
-## 👤 Author
-
-Developed as a portfolio project for Apple Developer Academy submission, showcasing comprehensive software development capabilities in robotics, AI, and cloud computing.
-
----
-
-**Project Status**: ✅ Complete and Ready for Review
-
-**Submission Date**: 2025
-
-**Institution**: Apple Developer Academy
