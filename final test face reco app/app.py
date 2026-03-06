@@ -1,4 +1,12 @@
 # app.py
+# 
+# Copyright © 2025. All Rights Reserved.
+# 
+# PROPRIETARY AND CONFIDENTIAL
+# This software is the proprietary information of the copyright holder.
+# Unauthorized copying, distribution, or use is strictly prohibited.
+# See LICENSE file in the root directory for terms and conditions.
+#
 import logging
 import os
 import tempfile

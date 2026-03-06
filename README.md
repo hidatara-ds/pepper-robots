@@ -2,15 +2,17 @@
 
 ## 📋 Project Overview
 
-This project demonstrates a comprehensive, production-ready management system for Pepper humanoid robots, showcasing advanced capabilities in AI integration, face recognition, natural language processing, and robotic control.
+This project is a comprehensive, production-ready management system for Pepper humanoid robots, featuring advanced capabilities in AI integration, face recognition, natural language processing, and robotic control.
+
+**Copyright Notice**: This software is proprietary research work. All rights reserved by the original creator. See LICENSE file for usage terms.
 
 ---
 
 ## 🎯 Project Objectives
 
-This project was created to demonstrate:
+This research project was developed to explore:
 
-- **Full-Stack Development Expertise**: Complete backend API with modern web interfaces
+- **Full-Stack Development**: Complete backend API with modern web interfaces
 - **AI/ML Integration**: Advanced face recognition and conversational AI capabilities
 - **Cloud-Native Architecture**: Integration with Google Cloud Platform services
 - **Robotic Control Systems**: Comprehensive movement and interaction management
@@ -233,37 +235,39 @@ This project showcases proficiency in:
 
 ---
 
-## 📝 Notes for Reviewers
+## 📝 Research Notes
 
-This project was specifically designed and developed as a comprehensive portfolio piece for Apple Developer Academy submission. All code, documentation, and architecture decisions were made with the intention of demonstrating:
+This project represents original research and development work in the field of human-robot interaction and AI integration. All code, documentation, and architecture decisions were made with the intention of demonstrating:
 
 - **Technical Competency**: Advanced programming and system design skills
 - **Best Practices**: Industry-standard development methodologies
 - **Innovation**: Creative integration of modern technologies
 - **Completeness**: Full-stack, production-ready system
 
-The codebase is production-ready and demonstrates real-world application development capabilities suitable for enterprise-level projects.
+The codebase is production-ready and demonstrates real-world application development capabilities suitable for enterprise-level projects and academic research.
 
 ---
 
 ## 📄 License
 
-MIT License
+This software is proprietary and protected by copyright law. See the LICENSE file for complete terms and conditions.
 
-Copyright (c) 2025
+**Copyright © 2025. All Rights Reserved.**
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This project is the intellectual property of the original creator and is intended for research and academic purposes. Any use, reproduction, or distribution requires explicit written permission from the copyright holder.
 
 ---
 
-## 🙏 Attribution
+## 🙏 Citation & Attribution
 
-If you use this code in your project, please provide attribution by mentioning the original author and linking back to this repository. This project represents significant personal effort and was developed as part of an Apple Developer Academy application portfolio.
+If you reference this work in academic papers, research, or any publication, please cite appropriately:
 
-While this code is open source and free to use, proper attribution is requested to acknowledge the work and effort invested in creating this comprehensive system.
+```
+[Author Name]. (2025). Pepper Robot Management System: 
+A Comprehensive AI-Integrated Robotic Control Platform. 
+[Research Institution/Affiliation].
+```
+
+This project represents significant original research and development effort in the field of human-robot interaction, AI integration, and robotic control systems.
 
 ---

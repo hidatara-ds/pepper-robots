@@ -1,0 +1,92 @@
+NOTICE
+
+================================================================================
+PEPPER ROBOT MANAGEMENT SYSTEM
+================================================================================
+
+Copyright © 2025. All Rights Reserved.
+
+This software is proprietary and confidential. It is protected by copyright 
+law and international treaties.
+
+IMPORTANT LEGAL NOTICES:
+
+1. PROPRIETARY SOFTWARE
+   This is proprietary software. All rights are reserved by the copyright holder.
+   Unauthorized use, reproduction, or distribution is strictly prohibited.
+
+2. CONFIDENTIAL INFORMATION
+   This software contains confidential and proprietary information that is the 
+   exclusive property of the copyright holder. Any unauthorized disclosure may 
+   result in legal action.
+
+3. RESEARCH WORK
+   This software represents original research and development work in the fields 
+   of robotics, artificial intelligence, computer vision, and human-robot 
+   interaction.
+
+4. ACADEMIC USE
+   Any reference to this work in academic publications, research papers, or 
+   educational materials requires:
+   - Explicit written permission from the copyright holder
+   - Proper citation and attribution
+   - Notification to the copyright holder
+
+5. NO WARRANTY
+   This software is provided "as is" without warranty of any kind, either 
+   expressed or implied.
+
+6. THIRD-PARTY COMPONENTS
+   This software may include third-party libraries and components that are 
+   subject to their own licenses. See requirements.txt and individual component 
+   documentation for details.
+
+7. EXPORT RESTRICTIONS
+   This software may be subject to export control laws and regulations. Users 
+   are responsible for compliance with all applicable laws.
+
+8. CONTACT
+   For permissions, licensing, or other inquiries, contact the copyright holder 
+   through official repository channels.
+
+9. MODIFICATIONS
+   The copyright holder reserves the right to modify these terms at any time.
+
+10. GOVERNING LAW
+    This notice and all related matters shall be governed by applicable 
+    copyright and intellectual property laws.
+
+================================================================================
+
+THIRD-PARTY ACKNOWLEDGMENTS:
+
+This software uses the following open-source libraries and frameworks:
+- Flask (BSD License)
+- DeepFace (MIT License)
+- OpenCV (Apache 2.0 License)
+- Google Cloud Platform SDKs (Apache 2.0 License)
+- SQLAlchemy (MIT License)
+- And other dependencies listed in requirements.txt
+
+Each third-party component is subject to its own license terms. The use of 
+these components does not affect the proprietary nature of this software as 
+a whole.
+
+================================================================================
+
+DISCLAIMER:
+
+The information in this software is subject to change without notice. The 
+copyright holder assumes no responsibility for errors or omissions in this 
+software or documentation.
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY SPECIAL, INDIRECT, 
+INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN CONNECTION WITH THE 
+USE OR PERFORMANCE OF THIS SOFTWARE.
+
+================================================================================
+
+By accessing, viewing, or using this software, you acknowledge that you have 
+read this notice and agree to be bound by its terms.
+
+Last Updated: 2025

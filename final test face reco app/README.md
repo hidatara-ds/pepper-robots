@@ -2,7 +2,7 @@
 
 A Flask-based REST API for face recognition and registration, utilizing DeepFace and Google Cloud Storage (GCS) as the face image database.
 
-> **Note**: This project was originally developed as part of an Apple Developer Academy application portfolio and represents significant personal effort. While it's open source under MIT License, please provide proper attribution when using this code.
+> **Copyright Notice**: This software is proprietary research work. All rights reserved by the original creator. See LICENSE file in the root directory for usage terms.
 
 ## Features
 - Automatic face database synchronization from GCS
@@ -202,21 +202,15 @@ LOCAL_DB_PATH = r"C:\Users\<YOUR_NAME>\Documents\Face_Database"
 
 ## 📄 License
 
-MIT License
+This software is proprietary and protected by copyright law. See the LICENSE file in the root directory for complete terms and conditions.
 
-Copyright (c) 2025
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+**Copyright © 2025. All Rights Reserved.**
 
 ---
 
-## 🙏 Attribution
+## 🙏 Citation
 
-If you use this code in your project, please provide attribution by mentioning the original author and linking back to this repository. This project represents significant personal effort and was developed as part of an Apple Developer Academy application portfolio.
+If you reference this work in academic papers or research, please cite appropriately. This project represents significant original research effort in face recognition and cloud-based identity management systems.
 
 ---
 

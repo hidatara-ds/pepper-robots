@@ -1,0 +1,73 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below. Note: Citation requires explicit written permission from the copyright holder."
+type: software
+title: "Pepper Robot Management System: A Comprehensive AI-Integrated Robotic Control Platform"
+abstract: "A production-ready management system for Pepper humanoid robots featuring advanced AI integration, face recognition, natural language processing, and comprehensive robotic control capabilities. This system demonstrates full-stack development with cloud-native architecture, integrating Google Cloud Platform services for distributed computing, real-time face recognition, and conversational AI."
+authors:
+  - family-names: "[Your Last Name]"
+    given-names: "[Your First Name]"
+    email: "[Your Email]"
+    affiliation: "[Your Institution/Organization]"
+    orcid: "https://orcid.org/[Your ORCID if available]"
+repository-code: "[Your Repository URL]"
+url: "[Your Repository URL]"
+keywords:
+  - robotics
+  - artificial intelligence
+  - face recognition
+  - natural language processing
+  - human-robot interaction
+  - computer vision
+  - cloud computing
+  - pepper robot
+  - conversational AI
+  - full-stack development
+  - microservices
+  - RESTful API
+license: "Proprietary"
+license-url: "[Your Repository URL]/blob/main/LICENSE"
+version: 1.0.0
+date-released: 2025-01-01
+contact:
+  - family-names: "[Your Last Name]"
+    given-names: "[Your First Name]"
+    email: "[Your Email]"
+references:
+  - type: software
+    title: "DeepFace: Deep Face Recognition"
+    authors:
+      - name: "DeepFace Contributors"
+    repository-code: "https://github.com/serengil/deepface"
+  - type: software
+    title: "Flask Web Framework"
+    authors:
+      - name: "Pallets Projects"
+    repository-code: "https://github.com/pallets/flask"
+  - type: software
+    title: "OpenCV: Open Source Computer Vision Library"
+    authors:
+      - name: "OpenCV Contributors"
+    repository-code: "https://github.com/opencv/opencv"
+identifiers:
+  - type: url
+    value: "[Your Repository URL]"
+    description: "Source code repository"
+preferred-citation:
+  type: software
+  title: "Pepper Robot Management System: A Comprehensive AI-Integrated Robotic Control Platform"
+  authors:
+    - family-names: "[Your Last Name]"
+      given-names: "[Your First Name]"
+      email: "[Your Email]"
+      affiliation: "[Your Institution/Organization]"
+  year: 2025
+  version: 1.0.0
+  license: "Proprietary"
+  repository-code: "[Your Repository URL]"
+  abstract: "A production-ready management system for Pepper humanoid robots featuring advanced AI integration, face recognition, natural language processing, and comprehensive robotic control capabilities."
+  keywords:
+    - robotics
+    - artificial intelligence
+    - human-robot interaction
+    - face recognition
+    - conversational AI

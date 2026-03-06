@@ -1,0 +1,211 @@
+# ============================================
+# PROPRIETARY PROJECT - CONFIDENTIAL
+# Copyright © 2025. All Rights Reserved.
+# ============================================
+
+# Sensitive Credentials & Keys
+*.json
+!*.json.example
+key.json
+credentials.json
+service-account*.json
+*-key.json
+*.pem
+*.key
+*.cert
+*.crt
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+env310/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Operating Systems
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+pepper_robot.db
+
+# Logs
+*.log
+logs/
+*.log.*
+server.log
+debug.log
+error.log
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.cache
+test_*.py
+*_test.py
+debug_*.py
+temp_*.py
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.swp
+*~
+.temp_*
+temp_*
+debug_*
+
+# Face Recognition Data (Sensitive)
+gcs_database/
+faces/
+face_images/
+*.pkl
+*.h5
+*.hdf5
+models/
+
+# Documentation Drafts (Keep final versions only)
+drafts/
+notes/
+TODO.md
+NOTES.md
+
+# Deployment & Build
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Cloud & Infrastructure
+.gcloudignore
+.dockerignore
+docker-compose.override.yml
+
+# Research & Development (Keep confidential)
+research/
+experiments/
+prototypes/
+sandbox/
+
+# Postman & API Testing
+*.postman_collection.json
+*.postman_environment.json
+!example.postman_collection.json
+
+# Jupyter Notebooks (if any)
+.ipynb_checkpoints/
+*.ipynb
+
+# Node modules (if any frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Package files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Media files (large files)
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.wav
+*.mp3
+
+# Backup files
+*_backup
+*_old
+*.orig
+
+# System files
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Security & Secrets
+secrets/
+private/
+confidential/
+.secrets/
+*.secret

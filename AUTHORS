@@ -1,0 +1,130 @@
+# Authors and Copyright Holders
+
+## Copyright Holder
+
+**Copyright © 2025. All Rights Reserved.**
+
+This software and all associated intellectual property rights are owned exclusively by:
+
+**[Your Name]**
+- Role: Creator, Lead Developer, and Researcher
+- Affiliation: [Your Institution/Organization]
+- Contact: [Through official repository channels]
+
+---
+
+## Intellectual Property Rights
+
+The copyright holder retains all rights, title, and interest in and to:
+
+1. **Source Code**: All original source code and implementations
+2. **Algorithms**: All computational methods and algorithms
+3. **Architecture**: System design and architectural decisions
+4. **Documentation**: All technical documentation and specifications
+5. **Research**: All research findings and methodologies
+6. **Innovations**: All novel approaches and solutions
+
+---
+
+## Original Work
+
+This software represents original research and development work in:
+
+- **Robotics**: Pepper robot control and management systems
+- **Artificial Intelligence**: Natural language processing and conversational AI
+- **Computer Vision**: Face recognition and detection systems
+- **Cloud Computing**: Distributed systems and cloud integration
+- **Full-Stack Development**: Backend APIs and web interfaces
+
+---
+
+## Research Contributions
+
+This work contributes to the following research areas:
+
+1. **Human-Robot Interaction (HRI)**
+   - Natural language-based robot control
+   - Voice-activated robot interaction
+   - Multi-modal communication systems
+
+2. **Computer Vision**
+   - Real-time face recognition systems
+   - Cloud-based image processing
+   - Distributed face database management
+
+3. **Artificial Intelligence**
+   - Conversational AI integration
+   - Context-aware dialogue systems
+   - Multi-turn conversation management
+
+4. **Software Engineering**
+   - Microservices architecture
+   - RESTful API design
+   - Cloud-native application development
+
+---
+
+## Academic Recognition
+
+This work is intended for academic publication and may be cited in:
+
+- Research papers
+- Conference proceedings
+- Academic journals
+- Technical reports
+- Dissertations and theses
+
+**Citation Requirements**: Any citation or reference to this work requires explicit written permission from the copyright holder and must include proper attribution.
+
+---
+
+## Authorized Collaborators
+
+Currently, there are no authorized external collaborators on this project.
+
+Any future collaborators must:
+1. Sign a Non-Disclosure Agreement (NDA)
+2. Sign a Copyright Assignment Agreement
+3. Receive explicit written authorization from the copyright holder
+4. Be listed in this file with their contributions documented
+
+---
+
+## Third-Party Acknowledgments
+
+While this software is proprietary, it uses the following open-source libraries:
+
+- **Flask**: Web framework (BSD License)
+- **DeepFace**: Face recognition library (MIT License)
+- **OpenCV**: Computer vision library (Apache 2.0)
+- **SQLAlchemy**: Database ORM (MIT License)
+- **Google Cloud SDKs**: Cloud services integration (Apache 2.0)
+
+The use of these libraries does not affect the proprietary nature of this software. All original code, architecture, and implementations remain the exclusive property of the copyright holder.
+
+---
+
+## Contact Information
+
+For inquiries regarding:
+- Authorship verification
+- Collaboration opportunities
+- Licensing requests
+- Academic citations
+- Permission requests
+
+Please contact the copyright holder through official repository channels.
+
+---
+
+## Legal Notice
+
+This file serves as an official record of authorship and copyright ownership. Any claims of authorship or ownership by unauthorized parties will be challenged legally.
+
+Unauthorized use, reproduction, or distribution of this work constitutes copyright infringement and may result in legal action.
+
+---
+
+**Document Version**: 1.0  
+**Last Updated**: 2025  
+**Status**: Active and Enforced
