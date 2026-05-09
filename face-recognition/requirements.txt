@@ -1,0 +1,5 @@
+Flask==2.2.5
+deepface==0.0.93
+google-cloud-storage
+numpy==1.23.5
+tensorflow==2.11.0
