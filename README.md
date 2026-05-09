@@ -21,9 +21,9 @@ The system is organized into three independently deployable microservices:
 
 | Service | Folder | Purpose |
 |---|---|---|
-| Backend Management | `pepper-be/` | REST API, auth, robot control, admin UI |
-| AI Conversation | `pepper-ai-discussion/` | Voice-based dialogue via Gemini + GCP STT/TTS |
-| Face Recognition | `final test face reco app/` | Real-time face detection with cloud-synced database |
+| Backend Management | `backend/` | REST API, auth, robot control, admin UI |
+| AI Conversation | `ai-chat/` | Voice-based dialogue via Gemini + GCP STT/TTS |
+| Face Recognition | `face-recognition/` | Real-time face detection with cloud-synced database |
 
 ---
 
@@ -47,7 +47,7 @@ The system is organized into three independently deployable microservices:
                ┌───────────────────────┼───────────────────────┐
                │                       │                       │
       ┌────────▼──────┐    ┌───────────▼──────┐    ┌──────────▼──────┐
-      │  pepper-be    │    │pepper-ai-discussion│   │  face reco app  │
+      │   backend     │    │     ai-chat        │   │face-recognition │
       │  Flask API    │    │  Flask + Docker   │    │  Flask + DeepFace│
       └───────┬───────┘    └─────────┬─────────┘    └────────┬────────┘
               │                      │                        │
@@ -63,7 +63,7 @@ The system is organized into three independently deployable microservices:
 
 ## Services
 
-### 1. Backend Management System (`pepper-be/`)
+### 1. Backend Management System (`backend/`)
 
 A Flask-based REST API that serves as the central control plane for the robot:
 
@@ -79,7 +79,7 @@ A Flask-based REST API that serves as the central control plane for the robot:
 
 ---
 
-### 2. AI Conversation Service (`pepper-ai-discussion/`)
+### 2. AI Conversation Service (`ai-chat/`)
 
 A voice-first dialogue service that gives Pepper natural language capabilities without onboard ML:
 
@@ -95,7 +95,7 @@ A voice-first dialogue service that gives Pepper natural language capabilities w
 
 ---
 
-### 3. Face Recognition Service (`final test face reco app/`)
+### 3. Face Recognition Service (`face-recognition/`)
 
 A real-time face recognition service backed by cloud-synced identity storage:
 
@@ -114,7 +114,7 @@ A real-time face recognition service backed by cloud-synced identity storage:
 
 ```
 pepper-robots/
-├── pepper-be/                       # Backend management system
+├── backend/                         # Backend management system
 │   ├── app/
 │   │   ├── controller/              # API route handlers
 │   │   ├── model/                   # SQLAlchemy database models
@@ -125,15 +125,20 @@ pepper-robots/
 │   ├── tests/                       # Unit and integration tests
 │   └── docs/                        # API documentation
 │
-├── pepper-ai-discussion/            # AI conversation microservice
+├── ai-chat/                         # AI conversation microservice
 │   ├── app.py                       # Flask application entry point
 │   ├── Dockerfile                   # Container build config
 │   └── requirements.txt
 │
-├── final test face reco app/        # Face recognition microservice
+├── face-recognition/                # Face recognition microservice
 │   ├── app.py                       # Flask application entry point
 │   ├── gcs_handler.py               # Google Cloud Storage integration
 │   └── pepper_client.py             # Pepper robot client library
+│
+├── assets/                          # Architecture & flow diagrams
+│   ├── cloud-logic.png
+│   ├── face-processing.png
+│   └── voice-processing.png
 │
 ├── .gitignore
 ├── AUTHORS
@@ -164,7 +169,7 @@ pepper-robots/
 ### 1. Backend Management System
 
 ```bash
-cd pepper-be
+cd backend
 python -m venv venv
 source venv/bin/activate          # Linux/macOS
 # venv\Scripts\activate           # Windows
@@ -190,7 +195,7 @@ PEPPER_HOST=192.168.x.x          # Robot IP (optional)
 **With Docker (recommended):**
 
 ```bash
-cd pepper-ai-discussion
+cd ai-chat
 docker build -t pepper-ai .
 docker run -p 5000:5000 \
   -e GOOGLE_APPLICATION_CREDENTIALS=/app/service-account.json \
@@ -201,7 +206,7 @@ docker run -p 5000:5000 \
 **Without Docker:**
 
 ```bash
-cd pepper-ai-discussion
+cd ai-chat
 pip install -r requirements.txt
 python app.py
 ```
@@ -211,7 +216,7 @@ python app.py
 ### 3. Face Recognition Service
 
 ```bash
-cd "final test face reco app"
+cd face-recognition
 pip install -r requirements.txt
 export GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json
 export GCS_BUCKET_NAME=your_bucket
@@ -226,9 +231,9 @@ On startup, the service will sync the face database from GCS to a local cache au
 
 Each service exposes its own REST API. Refer to the individual README files in each subdirectory for full endpoint documentation:
 
-- [`pepper-be/docs/`](pepper-be/docs/) — Backend management API
-- [`pepper-ai-discussion/`](pepper-ai-discussion/) — Conversation service API
-- [`final test face reco app/`](final%20test%20face%20reco%20app/) — Face recognition API
+- [`backend/docs/`](backend/docs/) — Backend management API
+- [`ai-chat/`](ai-chat/) — Conversation service API
+- [`face-recognition/`](face-recognition/) — Face recognition API
 
 ---
 
