@@ -1,149 +1,240 @@
-# Pepper Robot Management System
+# 🤖 Pepper Robot Management System
+
+> **A Cost-Effective Cloud-Offloading Architecture for Human-Robot Interaction**  
+> Integrating LLMs and Computer Vision on Resource-Constrained Humanoid Robots
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
-
-A comprehensive, production-ready management system for Pepper humanoid robots, featuring advanced capabilities in AI integration, face recognition, natural language processing, and robotic control.
+[![Flask](https://img.shields.io/badge/Flask-REST%20API-lightgrey.svg)](https://flask.palletsprojects.com/)
+[![Google Cloud](https://img.shields.io/badge/Google%20Cloud-Vertex%20AI%20%7C%20GCS%20%7C%20STT%2FTTS-4285F4.svg)](https://cloud.google.com/)
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ED.svg)](https://www.docker.com/)
 
 **Author**: Gilang Hidayatullah
 
 ---
 
-## Project Objectives
+## Overview
 
-- **Full-Stack Development**: Complete backend API with modern web interfaces
-- **AI/ML Integration**: Advanced face recognition and conversational AI capabilities
-- **Cloud-Native Architecture**: Integration with Google Cloud Platform services
-- **Robotic Control Systems**: Comprehensive movement and interaction management
-- **Production-Ready Code**: Well-structured, documented, and tested codebase
+Pepper robots are resource-constrained humanoid platforms with limited onboard compute. This project addresses that constraint through a **cloud-offloading architecture** — offloading heavy AI workloads (speech recognition, language understanding, face recognition) to Google Cloud services, while the robot handles physical interaction and I/O. The result is a full-stack system enabling real-time conversation, face-based identity recognition, and programmable movement — at a fraction of the cost of onboard processing.
 
----
+The system is organized into three independently deployable microservices:
 
-## System Architecture
-
-### 1. Backend Management System (ackend/)
-A Flask-based RESTful API backend providing comprehensive robot management capabilities:
-- User authentication and authorization
-- Face recognition and identity management
-- Robot movement and sequence control
-- AI conversation integration
-- SSH-based robot communication
-- Multi-language support (Indonesian/English)
-- Web-based administration interface
-
-**Key Technologies:** Python 3.11, Flask, SQLAlchemy, JWT, Google Cloud Storage
-
-### 2. AI Conversation Service (i-chat/)
-An intelligent voice-based conversation system:
-- Speech-to-Text using Google Cloud Speech-to-Text API
-- Natural language processing with Google Vertex AI (Gemini)
-- Text-to-Speech with Google Cloud TTS
-- Session management and conversation history
-- Docker containerization for cloud deployment
-
-**Key Technologies:** Flask, Vertex AI (Gemini 2.0 Flash), Google Cloud STT/TTS, Docker
-
-### 3. Face Recognition Service (ace-recognition/)
-Advanced face recognition system with cloud storage integration:
-- Real-time face detection and recognition
-- DeepFace-based facial analysis
-- Google Cloud Storage as distributed database
-- Automatic synchronization and caching
-- RESTful API for robot integration
-
-**Key Technologies:** Flask, DeepFace, OpenCV, Google Cloud Storage, VGG-Face
+| Service | Folder | Purpose |
+|---|---|---|
+| Backend Management | `pepper-be/` | REST API, auth, robot control, admin UI |
+| AI Conversation | `pepper-ai-discussion/` | Voice-based dialogue via Gemini + GCP STT/TTS |
+| Face Recognition | `final test face reco app/` | Real-time face detection with cloud-synced database |
 
 ---
 
-## Key Features
+## Architecture
 
-- **Robot Control**: Movement sequence management, dance/walk patterns, SSH command execution
-- **Face Recognition**: Real-time detection, multi-person recognition, cloud-based database
-- **AI Conversation**: Natural language understanding, voice I/O, multi-turn dialogue
-- **Security**: JWT authentication, password reset, secure credential management
-- **Web Interface**: Responsive admin dashboard, real-time monitoring, multi-language UI
+![Cloud Logic Architecture](assets/cloud-logic.png)
+
+```
+                          ┌─────────────────────────────────────┐
+                          │           Google Cloud Platform      │
+                          │  ┌──────────┐  ┌──────────────────┐ │
+                          │  │  Vertex  │  │  Cloud Storage   │ │
+                          │  │  AI      │  │  (face database) │ │
+                          │  │ (Gemini) │  └──────────────────┘ │
+                          │  └──────────┘  ┌──────────────────┐ │
+                          │  ┌──────────┐  │  STT / TTS APIs  │ │
+                          │  │Cloud Run │  └──────────────────┘ │
+                          │  └──────────┘                       │
+                          └────────────┬────────────────────────┘
+                                       │ REST / gRPC
+               ┌───────────────────────┼───────────────────────┐
+               │                       │                       │
+      ┌────────▼──────┐    ┌───────────▼──────┐    ┌──────────▼──────┐
+      │  pepper-be    │    │pepper-ai-discussion│   │  face reco app  │
+      │  Flask API    │    │  Flask + Docker   │    │  Flask + DeepFace│
+      └───────┬───────┘    └─────────┬─────────┘    └────────┬────────┘
+              │                      │                        │
+              └──────────────────────┴────────────────────────┘
+                                     │ SSH / NAOqi SDK
+                                ┌────▼─────┐
+                                │  Pepper  │
+                                │  Robot   │
+                                └──────────┘
+```
 
 ---
 
-## Technical Stack
+## Services
 
-| Category | Technologies |
-|----------|-------------|
-| Backend | Python 3.11, Flask, SQLAlchemy, JWT, OpenCV, DeepFace |
-| Cloud | Google Cloud Storage, Speech-to-Text, Text-to-Speech, Vertex AI |
-| Frontend | HTML5/CSS3, JavaScript/jQuery, Bootstrap |
-| DevOps | Docker, Git, Virtual Environments |
+### 1. Backend Management System (`pepper-be/`)
+
+A Flask-based REST API that serves as the central control plane for the robot:
+
+- JWT-authenticated user management and role-based access control
+- Robot movement and choreography sequence management (walk, dance patterns)
+- SSH-based command dispatch to the Pepper robot
+- Face identity database management (linked to GCS)
+- AI conversation session orchestration
+- Web-based admin dashboard (Bootstrap, HTML/CSS/JS)
+- Multi-language support (Indonesian / English)
+
+**Stack:** Python 3.11, Flask, SQLAlchemy (SQLite), JWT, Google Cloud Storage
+
+---
+
+### 2. AI Conversation Service (`pepper-ai-discussion/`)
+
+A voice-first dialogue service that gives Pepper natural language capabilities without onboard ML:
+
+- Captures audio input → Google Cloud Speech-to-Text for transcription
+- Sends transcript to Vertex AI (Gemini 2.0 Flash) for response generation
+- Synthesizes response audio via Google Cloud Text-to-Speech
+- Maintains per-session conversation history for multi-turn context
+- Containerized and deployable to Cloud Run
+
+**Stack:** Flask, Vertex AI (Gemini 2.0 Flash), Google Cloud STT/TTS, Docker
+
+![Voice Processing Flow](assets/voice-processing.png)
+
+---
+
+### 3. Face Recognition Service (`final test face reco app/`)
+
+A real-time face recognition service backed by cloud-synced identity storage:
+
+- Detects and identifies faces from live camera frames using DeepFace + VGGFace
+- Stores and retrieves identity embeddings via Google Cloud Storage (no local DB required)
+- Auto-syncs the local face cache with GCS on startup
+- Exposes a REST API for robot integration
+
+**Stack:** Flask, DeepFace, OpenCV, VGGFace, Google Cloud Storage
+
+![Face Processing Flow](assets/face-processing.png)
 
 ---
 
 ## Project Structure
 
-`
+```
 pepper-robots/
-├── backend/                       # Main backend management system
+├── pepper-be/                       # Backend management system
 │   ├── app/
-│   │   ├── controller/           # API controllers
-│   │   ├── model/                # Database models
-│   │   ├── services/             # Business logic services
-│   │   ├── templates/            # Web UI templates
-│   │   ├── static/               # CSS, JS, images
-│   │   └── utils/                # Utility functions
-│   ├── tests/                    # Unit and integration tests
-│   └── docs/                     # API documentation
-├── ai-chat/                      # AI conversation service
-│   ├── app.py                    # Main Flask application
-│   ├── Dockerfile                # Container configuration
-│   └── requirements.txt          # Python dependencies
-└── face-recognition/             # Face recognition service
-    ├── app.py                    # Face recognition API
-    ├── gcs_handler.py            # Cloud storage integration
-    └── pepper_client.py          # Robot client library
-`
+│   │   ├── controller/              # API route handlers
+│   │   ├── model/                   # SQLAlchemy database models
+│   │   ├── services/                # Business logic
+│   │   ├── templates/               # Jinja2 web UI templates
+│   │   ├── static/                  # CSS, JS, images
+│   │   └── utils/                   # Shared utilities
+│   ├── tests/                       # Unit and integration tests
+│   └── docs/                        # API documentation
+│
+├── pepper-ai-discussion/            # AI conversation microservice
+│   ├── app.py                       # Flask application entry point
+│   ├── Dockerfile                   # Container build config
+│   └── requirements.txt
+│
+├── final test face reco app/        # Face recognition microservice
+│   ├── app.py                       # Flask application entry point
+│   ├── gcs_handler.py               # Google Cloud Storage integration
+│   └── pepper_client.py             # Pepper robot client library
+│
+├── .gitignore
+├── AUTHORS
+├── CITATION.cff
+├── CONTRIBUTING.md
+├── LICENSE                          # Apache 2.0
+└── SECURITY.md
+```
 
 ---
 
 ## Getting Started
 
 ### Prerequisites
-- Python 3.11 or higher
-- Google Cloud Platform account with appropriate APIs enabled
-- Access to Pepper robot (for full functionality testing)
 
-### Quick Start
+- Python 3.11+
+- A [Google Cloud Platform](https://cloud.google.com/) project with these APIs enabled:
+  - Vertex AI API
+  - Cloud Speech-to-Text API
+  - Cloud Text-to-Speech API
+  - Cloud Storage API
+- A GCP service account key (JSON) with appropriate permissions
+- Docker (for the AI conversation service)
+- Access to a Pepper robot (optional — core services run without it)
 
-1. **Clone the repository**
-   `ash
-   git clone https://github.com/hidatara-ds/pepper-robots.git
-   cd pepper-robots
-   `
+---
 
-2. **Set up backend system**
-   `ash
-   cd backend
-   python -m venv venv
-   # Windows:
-   venv\\Scripts\\activate
-   # Linux/Mac:
-   source venv/bin/activate
-   pip install -r requirements.txt
-   `
+### 1. Backend Management System
 
-3. **Configure environment variables**
-   - Copy .env.example to .env and fill in your credentials
-   - Configure Google Cloud credentials (see individual README files)
+```bash
+cd pepper-be
+python -m venv venv
+source venv/bin/activate          # Linux/macOS
+# venv\Scripts\activate           # Windows
 
-4. **Run the application**
-   `ash
-   python run.py
-   `
+pip install -r requirements.txt
+cp .env.example .env              # Fill in your credentials
+python run.py
+```
 
-For detailed setup instructions for each component, refer to the individual README files in each subdirectory.
+Key `.env` variables:
+
+```env
+SECRET_KEY=your_flask_secret
+GCS_BUCKET_NAME=your_bucket
+GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json
+PEPPER_HOST=192.168.x.x          # Robot IP (optional)
+```
+
+---
+
+### 2. AI Conversation Service
+
+**With Docker (recommended):**
+
+```bash
+cd pepper-ai-discussion
+docker build -t pepper-ai .
+docker run -p 5000:5000 \
+  -e GOOGLE_APPLICATION_CREDENTIALS=/app/service-account.json \
+  -v /path/to/service-account.json:/app/service-account.json \
+  pepper-ai
+```
+
+**Without Docker:**
+
+```bash
+cd pepper-ai-discussion
+pip install -r requirements.txt
+python app.py
+```
+
+---
+
+### 3. Face Recognition Service
+
+```bash
+cd "final test face reco app"
+pip install -r requirements.txt
+export GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json
+export GCS_BUCKET_NAME=your_bucket
+python app.py
+```
+
+On startup, the service will sync the face database from GCS to a local cache automatically.
+
+---
+
+## API Reference
+
+Each service exposes its own REST API. Refer to the individual README files in each subdirectory for full endpoint documentation:
+
+- [`pepper-be/docs/`](pepper-be/docs/) — Backend management API
+- [`pepper-ai-discussion/`](pepper-ai-discussion/) — Conversation service API
+- [`final test face reco app/`](final%20test%20face%20reco%20app/) — Face recognition API
 
 ---
 
 ## License
 
-Licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for details.
+Licensed under the [Apache License, Version 2.0](LICENSE).
 
 Copyright 2026 Gilang Hidayatullah
 
@@ -151,13 +242,20 @@ Copyright 2026 Gilang Hidayatullah
 
 ## Citation
 
-If you reference this work, please cite:
+If you use this work in academic research, please cite:
 
-`ibtex
+```bibtex
 @software{hidayatullah2026pepper,
-  author = {Hidayatullah, Gilang},
-  title = {Pepper Robot Management System: A Comprehensive AI-Integrated Robotic Control Platform},
-  year = {2026},
-  url = {https://github.com/hidatara-ds/pepper-robots}
+  author    = {Hidayatullah, Gilang},
+  title     = {Pepper Robot Management System: A Cost-Effective Cloud-Offloading
+               Architecture for Human-Robot Interaction},
+  year      = {2026},
+  url       = {https://github.com/hidatara-ds/pepper-robots}
 }
-`
+```
+
+---
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
